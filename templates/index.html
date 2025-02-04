@@ -16,9 +16,10 @@
         <!-- Форма для ввода кода (изначально скрыта) -->
         <div id="code-form" class="code-form" style="display: none;">
             <h2>Введите код из Telegram</h2>
-            <input type="text" id="code-input" placeholder="Ваш код" required>
-            <button id="submit-code" class="login-button">Подтвердить</button>
-            <p id="result-message"></p>
+            <form action="/verify_code" method="POST">
+                <input type="text" name="code" placeholder="Ваш код" required>
+                <button type="submit" class="login-button">Подтвердить</button>
+            </form>
         </div>
     </div>
 
@@ -40,33 +41,6 @@
                     // Скрываем кнопку "Войти через Telegram"
                     this.style.display = 'none';
                 });
-        });
-
-        // Обработчик для кнопки "Подтвердить"
-        document.getElementById('submit-code').addEventListener('click', function() {
-            const code = document.getElementById('code-input').value;
-            if (code) {
-                // Отправляем код на сервер для проверки
-                fetch('/verify_code', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: `code=${encodeURIComponent(code)}`,
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Отображаем результат проверки
-                    const resultMessage = document.getElementById('result-message');
-                    resultMessage.textContent = data.message;
-                    resultMessage.style.color = data.status === 'success' ? 'green' : 'red';
-                })
-                .catch(error => {
-                    console.error('Ошибка:', error);
-                });
-            } else {
-                alert('Пожалуйста, введите код.');
-            }
         });
     </script>
 </body>
