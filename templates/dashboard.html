@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <ul>
+                <li><a href="#">Мои данные</a></li>
+                <li><a href="#">Моё меню</a></li>
+                <li><a href="#">Моя статистика</a></li>
+                <li><a href="#">Настройки</a></li>
+                <li><a href="/logout">Выйти</a></li>
+            </ul>
+        </nav>
+        <h1>Привет, {{ first_name }} {{ last_name }}!</h1>
+        <p>Ваш username: {{ username }}</p>
+    </div>
+</body>
+</html>

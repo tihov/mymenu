@@ -1,0 +1,1 @@
+config.pygit rm --cached config.py
